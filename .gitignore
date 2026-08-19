@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Generated LiDAR output
+output/
+*.las
+
+# Local test data
+test_data/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+Desktop.ini
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+
+# Bundled LAStools executable
+tools/laszip64.exe

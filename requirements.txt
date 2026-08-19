@@ -1,0 +1,5 @@
+# LiDAR Processor
+#
+# No third-party Python packages are currently required.
+# The application uses Python standard library modules
+# and the Windows Tkinter installation.
