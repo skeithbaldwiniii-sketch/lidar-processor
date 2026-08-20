@@ -1,5 +1,6 @@
 from pathlib import Path
 import subprocess
+import sys
 from dataclasses import dataclass
 
 
@@ -14,8 +15,18 @@ class ConversionResult:
 def find_laszip() -> Path:
     """Find the bundled laszip64 executable."""
 
-    project_root = Path(__file__).resolve().parent.parent
-    laszip_path = project_root / "tools" / "laszip64.exe"
+    if getattr(sys, "frozen", False):
+        # Running as a PyInstaller executable.
+        base_path = Path(sys._MEIPASS)
+    else:
+        # Running from the Python source project.
+        base_path = Path(__file__).resolve().parent.parent
+
+    laszip_path = (
+        base_path
+        / "tools"
+        / "laszip64.exe"
+    )
 
     if not laszip_path.exists():
         raise FileNotFoundError(
@@ -69,10 +80,17 @@ def convert_laz_to_las(
     ]
 
     try:
+
+        creation_flags = 0
+
+        if hasattr(subprocess, "CREATE_NO_WINDOW"):
+            creation_flags = subprocess.CREATE_NO_WINDOW
+
         result = subprocess.run(
             command,
             capture_output=True,
             text=True,
+            creationflags=creation_flags,
         )
 
     except OSError as error:
