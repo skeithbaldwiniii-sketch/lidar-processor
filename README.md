@@ -39,7 +39,7 @@ ArcGIS Pro
 
 ## Screenshot
 
-![LiDAR Processor Interface](images/lidar-processor-interface.png)
+![LiDAR Processor Interface](images/lidar_processor_interface.png)
 
 ## Usage
 
